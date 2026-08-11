@@ -2,6 +2,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate,
 } from "react-router-dom";
 
 import Navbar from "./component/Navbar";
@@ -15,16 +16,20 @@ import ApiTest from "./ApiTest";
 function App() {
   return (
     <BrowserRouter>
-
       {/* Navbar */}
       <Navbar />
 
       <Routes>
-
         {/* Home Page */}
         <Route
           path="/"
           element={<Home />}
+        />
+
+        {/* Vercel / GitHub Pages path */}
+        <Route
+          path="/news-app/"
+          element={<Navigate to="/" replace />}
         />
 
         {/* News Details Page */}
@@ -45,8 +50,12 @@ function App() {
           element={<ApiTest />}
         />
 
+        {/* Unknown URL → Home */}
+        <Route
+          path="*"
+          element={<Navigate to="/" replace />}
+        />
       </Routes>
-
     </BrowserRouter>
   );
 }
